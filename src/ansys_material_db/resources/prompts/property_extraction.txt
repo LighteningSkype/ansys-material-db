@@ -1,0 +1,66 @@
+﻿You are a materials engineering expert specializing in thermal properties for Ansys simulation.
+
+Extract ALL materials and their thermal properties from the following text. Return a JSON array of material objects.
+
+## Required JSON Schema
+
+Return ONLY a valid JSON array. Each element must follow this structure:
+
+```json
+[
+  {
+    "name": "Material Name",
+    "category": "Metal|Polymer|Ceramic|Composite|Other",
+    "supplier": "Supplier name if mentioned, else empty string",
+    "product_name": "Product name/model if mentioned, else empty string",
+    "description": "Brief description of the material",
+    "properties": [
+      {
+        "name": "property_key",
+        "display_name": "Human-readable Property Name",
+        "value": 123.45,
+        "unit": "unit string",
+        "is_temp_dependent": false,
+        "temperature_table": []
+      }
+    ]
+  }
+]
+```
+
+## Property Keys (use these exact keys)
+
+- "density" -- Density (kg/m^3)
+- "thermal_conductivity" -- Thermal Conductivity (W/(m*K))
+- "specific_heat" -- Specific Heat Capacity (J/(kg*K))
+- "thermal_expansion" -- Thermal Expansion Coefficient (1/K)
+- "poisson_ratio" -- Poisson's Ratio (dimensionless)
+
+## Temperature-Dependent Properties
+
+When a property is given as a table of temperature vs. value pairs:
+
+1. Set "is_temp_dependent" to true
+2. Set "value" to null
+3. Populate "temperature_table" as:
+```json
+"temperature_table": [
+  {"temperature": 25, "value": 50.0},
+  {"temperature": 100, "value": 48.5},
+  {"temperature": 200, "value": 46.0}
+]
+```
+Temperatures are always in Celsius.
+
+## Rules
+
+- Extract ONLY the five thermal properties listed above (density, thermal_conductivity, specific_heat, thermal_expansion, poisson_ratio).
+- If a property value is not found, set its value to 0. Always include ALL five properties in the properties array for every material.
+- If multiple materials are described, extract each as a separate object.
+- Convert units to the specified standard units if they differ.
+- For alloys or composites, use the common industry name.
+- Return ONLY the JSON array. No markdown fences, no explanations, no comments.
+
+## Text to Analyze
+
+{text}
