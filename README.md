@@ -12,10 +12,6 @@ Ansys thermal simulation material database management tool with AI-powered prope
 - **Internationalization** - Full Chinese/English UI with one-click language switching
 - **OpenAI-compatible LLM** - Connect to any OpenAI API-compatible model (e.g., mimo-v2.5)
 
-## Screenshots
-
-> TODO: Add screenshots
-
 ## Requirements
 
 - Python 3.10+
@@ -24,7 +20,7 @@ Ansys thermal simulation material database management tool with AI-powered prope
 ## Installation
 
 `ash
-git clone https://github.com/YOUR_USERNAME/ansys-material-db.git
+git clone https://github.com/lktx/ansys-material-db.git
 cd ansys-material-db
 python -m venv .venv
 .venv\Scripts\activate      # Windows
@@ -39,7 +35,7 @@ python -m ansys_material_db.main
 
 ### Standalone Executable
 
-Download AnsysMaterialDB.exe from [Releases](https://github.com/YOUR_USERNAME/ansys-material-db/releases) and double-click to run.
+Download AnsysMaterialDB.exe from [Releases](https://github.com/lktx/ansys-material-db/releases) and double-click to run.
 
 ### LLM Configuration
 
@@ -51,21 +47,22 @@ Download AnsysMaterialDB.exe from [Releases](https://github.com/YOUR_USERNAME/an
 
 `
 src/ansys_material_db/
-├── app.py              # Application setup and backend wiring
-├── main.py             # Entry point
-├── i18n.py             # Internationalization (Chinese/English)
-├── config/             # App settings
-├── core/               # Business logic
+├── app.py                # Application setup and backend wiring
+├── main.py               # Entry point
+├── i18n.py               # Internationalization (Chinese/English)
+├── config/
+│   └── settings.py       # App settings
+├── core/
 │   ├── document_parser.py      # PDF/image text extraction
 │   ├── knowledge_base.py       # Document import orchestration
 │   ├── property_extractor.py   # LLM-based property extraction
 │   ├── qa_engine.py            # Q&A engine
 │   └── xml_generator.py        # Ansys XML generation
-├── data/               # Data layer
+├── data/
 │   ├── database.py             # SQLite manager
 │   ├── embeddings.py           # Text embedding service
 │   └── llm_client.py           # OpenAI-compatible LLM client
-├── gui/                # PyQt6 GUI
+├── gui/
 │   ├── main_window.py          # Main window with toolbox navigation
 │   ├── material_browser.py     # Material tree view with search/filter
 │   ├── property_editor.py      # Material property editing
@@ -74,7 +71,7 @@ src/ansys_material_db/
 │   ├── xml_viewer_page.py      # XML file viewer
 │   ├── settings_page.py        # LLM and UI settings
 │   └── styles.py               # Ansys-inspired dark theme
-└── models/             # Data models
+└── models/
     ├── material.py             # Material and MaterialProperty
     └── document.py             # Document and TextChunk
 `
